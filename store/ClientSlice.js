@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { BASE_URL } from '../constants'
 
 export const fetchClients = createAsyncThunk(
   'clients/fetchClients',
   async () => {
     try {
-      const res = await axios
-        .get('http://localhost:3000/clients')
-        .then((res) => res.data)
+      const res = await axios.get(`${BASE_URL}/clients`).then((res) => res.data)
       return res
     } catch (error) {
       console.log(error)

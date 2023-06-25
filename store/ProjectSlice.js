@@ -1,8 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { BASE_URL } from '../constants'
+import axios from 'axios'
 
 export const fetchProjects = createAsyncThunk(
   'projects/fetchProjects',
-  async () => {}
+  async () => {
+    try {
+      const res = axios.get(`${BASE_URL}/projects`).then((res) => res.data)
+      return res
+    } catch (error) {
+      console.log(error)
+    }
+  }
 )
 
 const projectSlice = createSlice({

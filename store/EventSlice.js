@@ -1,9 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { BASE_URL } from '../constants'
+import axios from 'axios'
 
-export const fetchEvents = createAsyncThunk(
-  'events/fetchEvents',
-  async () => {}
-)
+export const fetchEvents = createAsyncThunk('events/fetchEvents', async () => {
+  try {
+    const res = axios.get(`${BASE_URL}/events`).then((res) => res.data)
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 const eventSlice = createSlice({
   name: 'event',
