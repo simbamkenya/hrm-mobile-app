@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit'
 import employeeReducer from './EmployeeSlice'
 import projectReducer from './ProjectSlice'
 import eventReducer from './EventSlice'
+import clientReducer from './ClientSlice'
 
 export const store = configureStore({
   reducer: {
-    employee: employeeReducer,
-    project: projectReducer,
-    event: eventReducer,
+    employees: employeeReducer,
+    projects: projectReducer,
+    events: eventReducer,
+    clients: clientReducer,
   },
 })
