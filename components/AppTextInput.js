@@ -1,14 +1,20 @@
 import React from 'react'
 import { TextInput, View, StyleSheet } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import _ from 'lodash'
 
-function AppTextInput({ icon, width = '100%', ...otherProps }) {
+function AppTextInput({ icon, width = '100%', field, ...otherProps }) {
   return (
     <View style={[styles.container, { width }]}>
       {icon && (
         <MaterialCommunityIcons name={icon} size={20} color="" style="" />
       )}
-      <TextInput placeholderTextColor="" style="" {...otherProps}></TextInput>
+      <TextInput
+        placeholderTextColor=""
+        style=""
+        {..._.omit(field, 'onChangeText')}
+        {...otherProps}
+      ></TextInput>
     </View>
   )
 }

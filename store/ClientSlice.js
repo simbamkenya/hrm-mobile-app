@@ -14,6 +14,17 @@ export const fetchClients = createAsyncThunk(
   }
 )
 
+export const deleteClient = createAsyncThunk(
+  'clients/deleteClient',
+  async (clientId) => {
+    try {
+      axios.delete(`http://localhost:3000/clients/${clientId}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
 const clientSlice = createSlice({
   name: 'client',
   initialState: {
@@ -33,6 +44,18 @@ const clientSlice = createSlice({
       state.loading = false
     })
     builder.addCase(fetchClients.rejected, (state, action) => {
+      state.loading = false
+    })
+    builder.addCase(deleteClient.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(deleteClient.fulfilled, (state, action) => {
+      state.clients = state.clients.filter(
+        (client) => client._id !== action.payload
+      )
+      state.loading = false
+    })
+    builder.addCase(deleteClient.rejected, (state, action) => {
       state.loading = false
     })
   },
