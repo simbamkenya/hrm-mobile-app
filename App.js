@@ -9,6 +9,7 @@ import Welcome from './screens/Welcome'
 import Register from './screens/Register'
 import Login from './screens/Login'
 import Dashboard from './screens/Dashboard'
+import AppTabNavigator from './screens/TabNavigator'
 
 const Stack = createNativeStackNavigator()
 
@@ -21,7 +22,7 @@ const AppNavigator = () => (
     ></Stack.Screen>
     <Stack.Screen name="Login" component={Login}></Stack.Screen>
     <Stack.Screen name="Register" component={Register}></Stack.Screen>
-    <Stack.Screen name="Dashboard" component={Dashboard}></Stack.Screen>
+    <Stack.Screen name="Home" component={AppTabNavigator}></Stack.Screen>
   </Stack.Navigator>
 )
 

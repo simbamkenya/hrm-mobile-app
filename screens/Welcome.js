@@ -30,7 +30,7 @@ function Welcome({ navigation }) {
             <Button
               title="Dashboard"
               color="red"
-              onPress={() => navigation.navigate('Dashboard')}
+              onPress={() => navigation.navigate('Home')}
             ></Button>
           </View>
         </View>
