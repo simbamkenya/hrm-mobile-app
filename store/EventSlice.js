@@ -10,6 +10,17 @@ export const fetchEvents = createAsyncThunk('events/fetchEvents', async () => {
     console.log(error)
   }
 })
+export const addEvent = createAsyncThunk(
+  'events/addEvent',
+  async (eventData) => {
+    try {
+      const res = await axios.post(`http://localhost:3000/events`, eventData)
+      return res
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
 
 const eventSlice = createSlice({
   name: 'event',

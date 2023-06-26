@@ -13,6 +13,20 @@ export const fetchProjects = createAsyncThunk(
     }
   }
 )
+export const addProject = createAsyncThunk(
+  'projects/addProject',
+  async (projectData) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:3000/projects`,
+        projectData
+      )
+      return res
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
 
 const projectSlice = createSlice({
   name: 'project',

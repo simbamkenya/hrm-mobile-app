@@ -18,7 +18,19 @@ export const deleteClient = createAsyncThunk(
   'clients/deleteClient',
   async (clientId) => {
     try {
-      axios.delete(`http://localhost:3000/clients/${clientId}`)
+      await axios.delete(`http://localhost:3000/clients/${clientId}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
+export const addClient = createAsyncThunk(
+  'clients/addClient',
+  async (clientData) => {
+    try {
+      const res = await axios.post(`http://localhost:3000/clients`, clientData)
+      return res
     } catch (error) {
       console.log(error)
     }

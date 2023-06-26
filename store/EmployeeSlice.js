@@ -29,6 +29,21 @@ export const deleteEmployee = createAsyncThunk(
   }
 )
 
+export const addEmployee = createAsyncThunk(
+  'employees/addEmployee',
+  async (employeeData) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:3000/employees`,
+        employeeData
+      )
+      return res
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
 const employeeSlice = createSlice({
   name: 'employee',
   initialState: {
