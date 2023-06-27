@@ -4,6 +4,7 @@ import Screen from '../components/Screen'
 import AppButton from '../components/AppButton'
 import AppTextInput from '../components/AppTextInput'
 import { Formik, Form } from 'formik'
+import { login } from '../store/UserSlice'
 
 function Login() {
   return (
@@ -15,7 +16,7 @@ function Login() {
         />
         <Formik
           initialValues={{ email: 'ph@gmail.com', password: '123' }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => dispatchEvent(login(values))}
         >
           {({ values, handleChange, handleSubmit, handleBlur }) => (
             <Form onSubmit={handleSubmit}>

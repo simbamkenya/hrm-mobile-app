@@ -19,10 +19,11 @@ export const fetchEmployees = createAsyncThunk(
 export const deleteEmployee = createAsyncThunk(
   'employees/deleteEmployee',
   async (employeeId) => {
+    console.log('employeeid', employeeId)
     try {
       axios.delete(`http://localhost:3000/employees/${employeeId}`)
     } catch (error) {
-      console.log(error)
+      console.log('ERROR', error)
     }
   }
 )

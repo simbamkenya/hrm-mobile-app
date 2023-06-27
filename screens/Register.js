@@ -4,14 +4,19 @@ import { Formik, Field, Form } from 'formik'
 import Screen from '../components/Screen'
 import AppTextInput from '../components/AppTextInput'
 import AppButton from '../components/AppButton'
+import { BASE_URL } from '../constants'
+import axios, { Axios } from 'axios'
+import { login, registerUser } from '../store/UserSlice'
+import { useDispatch } from 'react-redux'
 
 function Register() {
+  const dispatch = useDispatch()
   return (
     <Screen>
       <View>
         <Formik
           initialValues={{ name: '', email: '', password: '' }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => dispatch(registerUser(values))}
         >
           {({ values, handleChange, handleSubmit, handleBlur }) => (
             <Form style={styles.form} onSubmit={handleSubmit}>

@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Image,
   TouchableHighlight,
+  Button,
 } from 'react-native'
 import { Swipeable } from 'react-native-gesture-handler'
 import ItemDeleteAction from './ItemDeleteAction'
@@ -33,10 +34,10 @@ function Employees() {
           <Text style={styles.text}>{`${firstName + lastName}`}</Text>
           {/* <Text style={styles.text}> {email}</Text> */}
           {/* <Button
-        title="Delete"
-        style={{ padding: 15, fontSize: 16, borderRadius: 12 }}
-        onPress={() => dispatch(deleteEmployee(id))}
-      ></Button> */}
+            title="Delete"
+            style={{ padding: 15, fontSize: 16, borderRadius: 12 }}
+            onPress={() => dispatch(deleteEmployee(id))}
+          ></Button> */}
         </View>
       </TouchableHighlight>
     </Swipeable>
