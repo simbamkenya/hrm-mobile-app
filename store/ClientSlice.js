@@ -70,6 +70,14 @@ const clientSlice = createSlice({
     builder.addCase(deleteClient.rejected, (state, action) => {
       state.loading = false
     })
+
+    builder.addCase(addClient.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(addClient.fulfilled, (state, action) => {
+      state.clients = [...state.clients, ...action.payload]
+      state.loading = false
+    })
   },
 })
 

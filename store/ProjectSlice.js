@@ -13,6 +13,18 @@ export const fetchProjects = createAsyncThunk(
     }
   }
 )
+
+export const deleteProject = createAsyncThunk(
+  'projects/deleteProject',
+  async (projectId) => {
+    try {
+      await axios.delete(`http://localhost:3000/projects/${projectId}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
 export const addProject = createAsyncThunk(
   'projects/addProject',
   async (projectData) => {
@@ -44,6 +56,24 @@ const projectSlice = createSlice({
       state.loading = false
     })
     builder.addCase(fetchProjects.rejected, (state, action) => {
+      state.loading = false
+    })
+
+    builder.addCase(deleteProject.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(deleteProject.fulfilled, (state, action) => {
+      state.projects = state.projects.filter(
+        (project) => project._id !== action.payload
+      )
+      state.loading = false
+    })
+
+    builder.addCase(addProject.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(addProject.fulfilled, (state, action) => {
+      state.projects = [...state.projects, action.payload]
       state.loading = false
     })
   },

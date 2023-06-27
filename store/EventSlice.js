@@ -10,6 +10,17 @@ export const fetchEvents = createAsyncThunk('events/fetchEvents', async () => {
     console.log(error)
   }
 })
+export const deleteEvent = createAsyncThunk(
+  'events/deleteEvent',
+  async (eventId) => {
+    try {
+      await axios.delete(`http://localhost:3000/events/${eventId}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
 export const addEvent = createAsyncThunk(
   'events/addEvent',
   async (eventData) => {
@@ -38,6 +49,14 @@ const eventSlice = createSlice({
       state.loading = false
     })
     builder.addCase(fetchEvents.rejected, (state, action) => {
+      state.loading = false
+    })
+
+    builder.addCase(addEvent.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(addEvent.fulfilled, (state, action) => {
+      state.events = [...state.events, action.payload]
       state.loading = false
     })
   },

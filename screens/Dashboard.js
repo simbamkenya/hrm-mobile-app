@@ -1,6 +1,6 @@
 import React from 'react'
-import { TouchableOpacity } from 'react-native-web'
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { ScrollView, TouchableOpacity } from 'react-native-web'
+import { View, Text, StyleSheet, Button, Image } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { MaterialCommunityIcons } from 'react-native-vector-icons'
 import Screen from '../components/Screen'
@@ -20,16 +20,53 @@ function Dashboard({ navigation }) {
   )
   return (
     <Screen>
-      <Card style={styles.card}>
-        <Text>hhhhh</Text>
-        <Button title="next" onPress={() => navigation.navigate('Clients')} />
-        <Text style={styles.sectionTitle}>Basic CardView Example</Text>
-      </Card>
+      <ScrollView>
+        <View style={styles.cardContainer}>
+          <Card style={styles.card}>
+            <Image
+              source={require('../assets/clients.jpg')}
+              style={styles.image}
+            />
+            <Text style={styles.sectionTitle}>2 Clients</Text>
+          </Card>
+        </View>
+        <View style={styles.cardContainer}>
+          <Card style={styles.card}>
+            <Image
+              style={styles.image}
+              source={require('../assets/events.jpg')}
+            />
+            <Text style={styles.sectionTitle}>6 Upcoming Events</Text>
+          </Card>
+        </View>
+        <View style={styles.cardContainer}>
+          <Card style={styles.card}>
+            <Image
+              source={require('../assets/Projects.jpg')}
+              style={styles.image}
+            />
+            <Text style={styles.sectionTitle}>12 Projects</Text>
+          </Card>
+        </View>
+        <View style={styles.cardContainer}>
+          <Card style={styles.card}>
+            <Image
+              source={require('../assets/employees.jpg')}
+              style={styles.image}
+            />
+            <Text style={styles.sectionTitle}>20 Employees</Text>
+          </Card>
+        </View>
+      </ScrollView>
     </Screen>
   )
 }
 
 const styles = StyleSheet.create({
+  cardContainer: {
+    marginVertical: 10,
+    paddingHorizontal: 20,
+  },
   card: {
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
@@ -40,13 +77,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#f18484',
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
+    marginBottom: 4,
+    borderLeftColor: 'green',
+    borderLeftWidth: 10,
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
     color: 'white',
   },
+  image: { width: 50, height: 50, borderRadius: 15 },
 })
 
 export default Dashboard

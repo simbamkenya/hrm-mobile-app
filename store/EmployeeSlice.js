@@ -73,6 +73,14 @@ const employeeSlice = createSlice({
     builder.addCase(deleteEmployee.rejected, (state, action) => {
       state.loading = false
     })
+
+    builder.addCase(addEmployee.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(addEmployee.fulfilled, (state, action) => {
+      state.employees = [...state.employees, action.payload]
+      state.loading = false
+    })
   },
 })
 // export const { deleteEmployee } = employeeSlice.actions

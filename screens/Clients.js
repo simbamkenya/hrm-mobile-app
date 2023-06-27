@@ -10,6 +10,7 @@ import {
   FlatList,
   Text,
   Button,
+  Image,
 } from 'react-native'
 import Screen from '../components/Screen'
 
@@ -31,13 +32,21 @@ function Clients() {
   const Client = ({ name, rate, id }) => (
     <View style={styles.container}>
       {console.log('id', id)}
-      <Text style={styles.text}>{name}</Text>
-      <Text style={styles.text}> ${rate}</Text>
-      <Button
+      <Image
+        style={{ height: 40, width: 40, borderRadius: 20, marginRight: 10 }}
+        source={require('../assets/user.jpg')}
+      ></Image>
+      <View style={{ flexDirection: 'column' }}>
+        <Text style={[styles.text, { marginRight: 10 }]}>
+          CLIENT NAME: {name}
+        </Text>
+        <Text style={styles.text}>HOURLY RATE ${rate}</Text>
+      </View>
+      {/* <Button
         title="Delete"
         style={{ padding: 15, fontSize: 16, borderRadius: 12 }}
         onPress={() => dispatch(deleteClient(id))}
-      ></Button>
+      ></Button> */}
     </View>
   )
 
@@ -69,6 +78,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 14,
     fontWeight: 'bold',
+    color: 'white',
   },
 })
 export default Clients
