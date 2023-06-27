@@ -18,13 +18,11 @@ export const fetchEmployees = createAsyncThunk(
 
 export const deleteEmployee = createAsyncThunk(
   'employees/deleteEmployee',
-  async () => {
-    ;async (employeeId) => {
-      try {
-        axios.delete(`http://localhost:3000/employees/${employeeId}`)
-      } catch (error) {
-        console.log(error)
-      }
+  async (employeeId) => {
+    try {
+      axios.delete(`http://localhost:3000/employees/${employeeId}`)
+    } catch (error) {
+      console.log(error)
     }
   }
 )
@@ -67,7 +65,9 @@ const employeeSlice = createSlice({
       state.loading = true
     })
     builder.addCase(deleteEmployee.fulfilled, (state, action) => {
-      state.employees.filter((employee) => employee._id !== action.payload)
+      state.employees = state.employees.filter(
+        (employee) => employee._id !== action.payload
+      )
       state.loading = false
     })
     builder.addCase(deleteEmployee.rejected, (state, action) => {

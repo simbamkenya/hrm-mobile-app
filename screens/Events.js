@@ -2,8 +2,17 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import Screen from '../components/Screen'
-import { fetchEvents } from '../store/EventSlice'
-import { FlatList, Text, View, StyleSheet, Image } from 'react-native'
+import { deleteEvent, fetchEvents } from '../store/EventSlice'
+import {
+  FlatList,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+} from 'react-native'
+import { Swipeable } from 'react-native-gesture-handler'
+import ItemDeleteAction from './ItemDeleteAction'
 
 function Events() {
   const { events } = useSelector((state) => state.events)
@@ -13,18 +22,28 @@ function Events() {
     dispatch(fetchEvents())
   }, [])
 
-  const Event = ({ eventName, duration, location, eventDate }) => (
-    <View style={styles.container}>
-      <Image
-        style={{ width: 40, height: 40, borderRadius: 5, marginRight: 10 }}
-        source={require('../assets/event.jpg')}
-      />
-      <View style={{ flexDirection: 'column' }}>
-        <Text style={styles.text}>EVENT: {eventName}</Text>
-        <Text style={styles.text}>LOCATION: {location}</Text>
-        <Text style={styles.text}>DURATION: {duration}</Text>
-      </View>
-    </View>
+  const Event = ({
+    eventName,
+    duration,
+    location,
+    eventDate,
+    renderRightActions,
+  }) => (
+    <Swipeable renderRightActions={renderRightActions}>
+      <TouchableHighlight>
+        <View style={styles.container}>
+          <Image
+            style={{ width: 40, height: 40, borderRadius: 5, marginRight: 10 }}
+            source={require('../assets/event.jpg')}
+          />
+          <View style={{ flexDirection: 'column' }}>
+            <Text style={styles.text}>EVENT: {eventName}</Text>
+            <Text style={styles.text}>LOCATION: {location}</Text>
+            <Text style={styles.text}>DURATION: {duration}</Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    </Swipeable>
   )
   return (
     <Screen>
@@ -37,6 +56,11 @@ function Events() {
             eventDate={item.eventDate}
             duration={item.duration}
             location={item.location}
+            renderRightActions={() => (
+              <ItemDeleteAction
+                onPress={() => dispatch(deleteEvent(item._id))}
+              />
+            )}
           />
         )}
       />

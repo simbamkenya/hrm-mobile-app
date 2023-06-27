@@ -51,6 +51,15 @@ const eventSlice = createSlice({
     builder.addCase(fetchEvents.rejected, (state, action) => {
       state.loading = false
     })
+    builder.addCase(deleteEvent.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(deleteEvent.fulfilled, (state, action) => {
+      state.events = state.events.filter(
+        (event) => event._id !== action.payload
+      )
+      state.loading = false
+    })
 
     builder.addCase(addEvent.pending, (state, action) => {
       state.loading = true

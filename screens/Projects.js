@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProjects } from '../store/ProjectSlice'
+import { deleteProject, fetchProjects } from '../store/ProjectSlice'
 import Screen from '../components/Screen'
-import { FlatList } from 'react-native-gesture-handler'
-import { Text, View, Image, StyleSheet } from 'react-native'
+import { FlatList, Swipeable } from 'react-native-gesture-handler'
+import { Text, View, Image, StyleSheet, TouchableHighlight } from 'react-native'
+import ItemDeleteAction from './ItemDeleteAction'
 
 function Projects() {
   const { projects } = useSelector((state) => state.projects)
@@ -15,24 +16,36 @@ function Projects() {
     dispatch(fetchProjects())
   }, [])
 
-  const Project = ({ projectName, hours }) => (
-    <View style={styles.container}>
-      <Image
-        style={{ width: 40, height: 40, borderRadius: 5, marginRight: 10 }}
-        source={require('../assets/project.jpg')}
-      />
-      <View style={{ flexDirection: 'column' }}>
-        <Text style={styles.text}>PROJECT: {projectName}</Text>
-        <Text style={styles.text}>ESTIMATED HOURS: {hours}</Text>
-      </View>
-    </View>
+  const Project = ({ projectName, hours, renderRightActions }) => (
+    <Swipeable renderRightActions={renderRightActions}>
+      <TouchableHighlight>
+        <View style={styles.container}>
+          <Image
+            style={{ width: 40, height: 40, borderRadius: 5, marginRight: 10 }}
+            source={require('../assets/project.jpg')}
+          />
+          <View style={{ flexDirection: 'column' }}>
+            <Text style={styles.text}>PROJECT: {projectName}</Text>
+            <Text style={styles.text}>ESTIMATED HOURS: {hours}</Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    </Swipeable>
   )
   return (
     <Screen>
       <FlatList
         data={projects}
         renderItem={({ item }) => (
-          <Project projectName={item.projectName} hours={item.hours} />
+          <Project
+            projectName={item.projectName}
+            hours={item.hours}
+            renderRightActions={() => (
+              <ItemDeleteAction
+                onPress={() => dispatch(deleteProject(item._id))}
+              />
+            )}
+          />
         )}
         keyExtractor={(item) => item._id}
       />
