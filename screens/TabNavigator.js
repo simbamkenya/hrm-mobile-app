@@ -9,6 +9,8 @@ import Projects from './Projects'
 import Events from './Events'
 import Employees from './Employees'
 import Dashboard from './Dashboard'
+import EmployeeProfile from './EmployeeProfile'
+import ItemNavigator from '../navigation/ItemNavigator'
 
 const Tab = createBottomTabNavigator()
 
@@ -20,6 +22,13 @@ function AppTabNavigator() {
         tabBarActiveTintColor: '#3d4e7a',
         headerTitleAlign: 'center',
         headerShadowVisible: false,
+        // headerShown: false,
+        tabBarStyle: {
+          height: 60,
+        },
+        tabBarItemStyle: {
+          margin: 5,
+        },
       }}
     >
       <Tab.Screen
@@ -29,6 +38,20 @@ function AppTabNavigator() {
           tabBarLabel: 'Dashboard',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+        }}
+      ></Tab.Screen>
+      <Tab.Screen
+        name="employees"
+        component={Employees}
+        options={{
+          tabBarLabel: 'Employees',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="account-group"
+              color={color}
+              size={size}
+            />
           ),
         }}
       ></Tab.Screen>
@@ -56,20 +79,7 @@ function AppTabNavigator() {
           ),
         }}
       ></Tab.Screen>
-      <Tab.Screen
-        name="employees"
-        component={Employees}
-        options={{
-          tabBarLabel: 'Employees',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="account-group"
-              color={color}
-              size={size}
-            />
-          ),
-        }}
-      ></Tab.Screen>
+
       <Tab.Screen
         name="events"
         component={Events}

@@ -23,38 +23,46 @@ function Dashboard({ navigation }) {
       <ScrollView>
         <View style={styles.cardContainer}>
           <Card style={styles.card}>
-            <Image
-              source={require('../assets/clients.jpg')}
-              style={styles.image}
-            />
-            <Text style={styles.sectionTitle}>2 Clients</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Image
+                source={require('../assets/clients.jpg')}
+                style={styles.image}
+              />
+              <Text style={styles.sectionTitle}>2 Clients</Text>
+            </View>
           </Card>
         </View>
         <View style={styles.cardContainer}>
           <Card style={styles.card}>
-            <Image
-              style={styles.image}
-              source={require('../assets/events.jpg')}
-            />
-            <Text style={styles.sectionTitle}>6 Upcoming Events</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Image
+                style={styles.image}
+                source={require('../assets/events.jpg')}
+              />
+              <Text style={styles.sectionTitle}>6 Upcoming Events</Text>
+            </View>
           </Card>
         </View>
         <View style={styles.cardContainer}>
           <Card style={styles.card}>
-            <Image
-              source={require('../assets/Projects.jpg')}
-              style={styles.image}
-            />
-            <Text style={styles.sectionTitle}>12 Projects</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Image
+                source={require('../assets/Projects.jpg')}
+                style={styles.image}
+              />
+              <Text style={styles.sectionTitle}>12 Projects</Text>
+            </View>
           </Card>
         </View>
         <View style={styles.cardContainer}>
           <Card style={styles.card}>
-            <Image
-              source={require('../assets/employees.jpg')}
-              style={styles.image}
-            />
-            <Text style={styles.sectionTitle}>20 Employees</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Image
+                source={require('../assets/employees.jpg')}
+                style={styles.image}
+              />
+              <Text style={styles.sectionTitle}>20 Employees</Text>
+            </View>
           </Card>
         </View>
       </ScrollView>
@@ -86,6 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '600',
     color: 'white',
+    marginLeft: 8,
   },
   image: { width: 50, height: 50, borderRadius: 15 },
 })

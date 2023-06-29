@@ -29,6 +29,9 @@ function Clients() {
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight onPress={() => console.log(rate)}>
         <View style={styles.container}>
+          {/* <Text style={{ fontFamily: 'Inter-SemiBoldItalic', fontSize: 30 }}>
+            Clientsss
+          </Text> */}
           {console.log('id', id)}
           <Image
             style={{ height: 40, width: 40, borderRadius: 20, marginRight: 10 }}

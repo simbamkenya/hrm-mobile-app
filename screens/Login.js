@@ -5,8 +5,11 @@ import AppButton from '../components/AppButton'
 import AppTextInput from '../components/AppTextInput'
 import { Formik, Form } from 'formik'
 import { login } from '../store/UserSlice'
+import { useNavigation } from '@react-navigation/native'
 
 function Login() {
+  const navigation = useNavigation()
+
   return (
     <Screen>
       <View style={{ justifyContent: 'center' }}>
@@ -15,8 +18,11 @@ function Login() {
           source={require('../assets/hrm-logo.png')}
         />
         <Formik
-          initialValues={{ email: 'ph@gmail.com', password: '123' }}
-          onSubmit={(values) => dispatchEvent(login(values))}
+          initialValues={{ email: '', password: '' }}
+          onSubmit={(values) => {
+            dispatchEvent(login(values))
+            navigation.navigate('dashboard')
+          }}
         >
           {({ values, handleChange, handleSubmit, handleBlur }) => (
             <Form onSubmit={handleSubmit}>
