@@ -1,10 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import EmployeeProfile from '../screens/EmployeeProfile'
+import Employees from '../screens/Employees'
 const Stack = createNativeStackNavigator()
 
-function ItemNavigator() {
+function EmployeeNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Employees">
+      <Stack.Screen name="Employees" component={Employees}></Stack.Screen>
       <Stack.Screen
         name="EmployeeProfile"
         component={EmployeeProfile}
@@ -13,4 +15,4 @@ function ItemNavigator() {
   )
 }
 
-export default ItemNavigator
+export default EmployeeNavigator

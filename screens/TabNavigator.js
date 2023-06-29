@@ -10,7 +10,10 @@ import Events from './Events'
 import Employees from './Employees'
 import Dashboard from './Dashboard'
 import EmployeeProfile from './EmployeeProfile'
-import ItemNavigator from '../navigation/ItemNavigator'
+import EmployeeNavigator from '../navigation/EmployeeNavigator'
+import ClientNavigator from '../navigation/ClientNavigator'
+import ProjectNavigator from '../navigation/ProjectNavigator'
+import EventNavigator from '../navigation/EventNavigator'
 
 const Tab = createBottomTabNavigator()
 
@@ -43,7 +46,7 @@ function AppTabNavigator() {
       ></Tab.Screen>
       <Tab.Screen
         name="employees"
-        component={Employees}
+        component={EmployeeNavigator}
         options={{
           tabBarLabel: 'Employees',
           tabBarIcon: ({ color, size }) => (
@@ -57,7 +60,7 @@ function AppTabNavigator() {
       ></Tab.Screen>
       <Tab.Screen
         name="clients"
-        component={Clients}
+        component={ClientNavigator}
         options={{
           tabBarLabel: 'Clients',
           tabBarIcon: ({ color, size }) => (
@@ -67,7 +70,7 @@ function AppTabNavigator() {
       ></Tab.Screen>
       <Tab.Screen
         name="projects"
-        component={Projects}
+        component={ProjectNavigator}
         options={{
           tabBarLabel: 'Projects',
           tabBarIcon: ({ color, size }) => (
@@ -82,7 +85,7 @@ function AppTabNavigator() {
 
       <Tab.Screen
         name="events"
-        component={Events}
+        component={EventNavigator}
         options={{
           tabBarLabel: 'Events',
           tabBarIcon: ({ color, size }) => (

@@ -16,10 +16,13 @@ import {
 import Screen from '../components/Screen'
 import { Swipeable } from 'react-native-gesture-handler'
 import ItemDeleteAction from './ItemDeleteAction'
+import { useNavigation } from '@react-navigation/native'
 
 function Clients() {
+  const navigation = useNavigation()
   const dispatch = useDispatch()
   const { clients } = useSelector((state) => state.clients)
+  console.log('clientss', clients[0])
 
   useEffect(() => {
     dispatch(fetchClients())
@@ -27,7 +30,9 @@ function Clients() {
 
   const Client = ({ name, rate, id, renderRightActions }) => (
     <Swipeable renderRightActions={renderRightActions}>
-      <TouchableHighlight onPress={() => console.log(rate)}>
+      <TouchableHighlight
+        onPress={() => navigation.navigate('ClientProfile', { name, rate })}
+      >
         <View style={styles.container}>
           {/* <Text style={{ fontFamily: 'Inter-SemiBoldItalic', fontSize: 30 }}>
             Clientsss

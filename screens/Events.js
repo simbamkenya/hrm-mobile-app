@@ -13,8 +13,10 @@ import {
 } from 'react-native'
 import { Swipeable } from 'react-native-gesture-handler'
 import ItemDeleteAction from './ItemDeleteAction'
+import { useNavigation } from '@react-navigation/native'
 
 function Events() {
+  const navigation = useNavigation()
   const { events } = useSelector((state) => state.events)
   const dispatch = useDispatch()
 
@@ -30,7 +32,15 @@ function Events() {
     renderRightActions,
   }) => (
     <Swipeable renderRightActions={renderRightActions}>
-      <TouchableHighlight>
+      <TouchableHighlight
+        onPress={() =>
+          navigation.navigate('EventProfile', {
+            eventName,
+            duration,
+            location,
+          })
+        }
+      >
         <View style={styles.container}>
           <Image
             style={{ width: 40, height: 40, borderRadius: 5, marginRight: 10 }}

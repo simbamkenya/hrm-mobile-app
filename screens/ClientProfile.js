@@ -3,9 +3,8 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 import Screen from '../components/Screen'
 import { colors } from '../constants/color'
 
-function EmployeeProfile({ route }) {
-  const { email, firstName, lastName } = route.params
-
+function ClientProfile({ route }) {
+  const { name, rate } = route.params
   return (
     <Screen style={styles.container}>
       <View>
@@ -13,19 +12,18 @@ function EmployeeProfile({ route }) {
           <Image style={styles.image} source={require('../assets/user.jpg')} />
         </View>
         <View style={styles.details}>
-          <Text style={styles.text}>
-            Name: {firstName} {lastName}
-          </Text>
-          <Text style={styles.text}>Email: {email}</Text>
+          <Text style={styles.text}>Client: {name}</Text>
+          <Text style={styles.text}>Rate: {rate}</Text>
         </View>
-        {/* <View style={styles.details}>
+        <View style={styles.details}>
           <Text style={styles.text}>Projects</Text>
-          <Text style={styles.text}>projects one</Text>
-        </View> */}
+          <Text style={styles.text}>1.</Text>
+        </View>
       </View>
     </Screen>
   )
 }
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.primary,
@@ -50,4 +48,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default EmployeeProfile
+export default ClientProfile

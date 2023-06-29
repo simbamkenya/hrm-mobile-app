@@ -15,9 +15,9 @@ import {
 import { Swipeable } from 'react-native-gesture-handler'
 import ItemDeleteAction from './ItemDeleteAction'
 import { useNavigation } from '@react-navigation/native'
-import EmployeeProfile from './EmployeeProfile'
-import AppTabNavigator from './TabNavigator'
-import ItemNavigator from '../navigation/ItemNavigator'
+// import EmployeeProfile from './EmployeeProfile'
+// import AppTabNavigator from './TabNavigator'
+// import EmployeeNavigator from '../navigation/EmployeeNavigator'
 
 function Employees() {
   const navigation = useNavigation()
@@ -29,9 +29,14 @@ function Employees() {
 
   const Employee = ({ id, firstName, lastName, email, renderRightActions }) => (
     <Swipeable renderRightActions={renderRightActions}>
+      {/* {console.log('email', email)} */}
       <TouchableHighlight
         onPress={() => {
-          // navigation.navigate('EmployeeProfile', {})
+          navigation.navigate('EmployeeProfile', {
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+          })
         }}
       >
         <View style={styles.container}>

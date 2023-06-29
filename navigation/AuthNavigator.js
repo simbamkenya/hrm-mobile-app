@@ -13,10 +13,10 @@ function AuthNavigator() {
       <Stack.Screen name="Welcome" component={Welcome}></Stack.Screen>
       <Stack.Screen name="Register" component={Register}></Stack.Screen>
       <Stack.Screen name="Login" component={Login}></Stack.Screen>
-      <Stack.Screen
+      {/* <Stack.Screen
         name="EmployeeProfile"
         component={EmployeeProfile}
-      ></Stack.Screen>
+      ></Stack.Screen> */}
     </Stack.Navigator>
   )
 }
