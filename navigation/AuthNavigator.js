@@ -4,6 +4,7 @@ import Welcome from '../screens/Welcome'
 import Register from '../screens/Register'
 import Login from '../screens/Login'
 import EmployeeProfile from '../screens/EmployeeProfile'
+import Dashboard from '../screens/Dashboard'
 
 const Stack = createNativeStackNavigator()
 
@@ -13,10 +14,7 @@ function AuthNavigator() {
       <Stack.Screen name="Welcome" component={Welcome}></Stack.Screen>
       <Stack.Screen name="Register" component={Register}></Stack.Screen>
       <Stack.Screen name="Login" component={Login}></Stack.Screen>
-      {/* <Stack.Screen
-        name="EmployeeProfile"
-        component={EmployeeProfile}
-      ></Stack.Screen> */}
+      {/* <Stack.Screen name="Dash" component={Dashboard}></Stack.Screen> */}
     </Stack.Navigator>
   )
 }

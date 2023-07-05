@@ -1,5 +1,5 @@
 import React from 'react'
-import AppTabNavigator from './TabNavigator'
+import AppTabNavigator from '../navigation/TabNavigator'
 
 function Home() {
   return <AppTabNavigator />

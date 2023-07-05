@@ -1,6 +1,7 @@
 import React, { Children } from 'react'
 import { View, SafeAreaView, StyleSheet } from 'react-native'
 import Constants from 'expo-constants'
+import { colors } from '../constants/color'
 
 function Screen({ children, style, onLayout }) {
   return (
@@ -19,6 +20,7 @@ const styles = StyleSheet.create({
   },
   view: {
     flex: 1,
+    backgroundColor: colors.black,
   },
 })
 

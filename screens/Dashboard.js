@@ -2,68 +2,83 @@ import React from 'react'
 import { ScrollView, TouchableOpacity } from 'react-native-web'
 import { View, Text, StyleSheet, Button, Image } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { MaterialCommunityIcons } from 'react-native-vector-icons'
 import Screen from '../components/Screen'
-import Home from './Home'
-
-import Clients from './Clients'
-import Projects from './Projects'
-import Events from './Events'
-import Employees from './Employees'
-import AppTabNavigator from './TabNavigator'
+import { TouchableHighlight } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native'
+import { colors } from '../constants/color'
+import { ImageBackground } from 'react-native'
 
 const Tab = createBottomTabNavigator()
 
-function Dashboard({ navigation }) {
+function Dashboard() {
+  const navigation = useNavigation()
   const Card = ({ style, children }) => (
     <View style={[styles.card, style]}>{children}</View>
   )
   return (
-    <Screen>
+    <Screen style={{ paddingTop: 8 }}>
       <ScrollView>
-        <View style={styles.cardContainer}>
-          <Card style={styles.card}>
-            <View style={{ flexDirection: 'row' }}>
-              <Image
-                source={require('../assets/clients.jpg')}
-                style={styles.image}
-              />
-              <Text style={styles.sectionTitle}>2 Clients</Text>
-            </View>
-          </Card>
+        <ImageBackground
+          source={require('../assets/dash-bg.jpg')}
+          style={{ flex: 1, width: '100%' }}
+          blurRadius={2}
+        >
+          <View style={styles.dashTitle}>
+            <Text style={styles.title}>Dashboard</Text>
+          </View>
+        </ImageBackground>
+        <View style={styles.cardRow}>
+          <View style={styles.cardContainer}>
+            <TouchableHighlight onPress={() => navigation.navigate('clients')}>
+              <Card style={styles.card}>
+                <Image
+                  source={require('../assets/clients.jpg')}
+                  style={styles.image}
+                />
+                <Text style={styles.sectionTitle}>Clients</Text>
+              </Card>
+            </TouchableHighlight>
+          </View>
+
+          <View style={styles.cardContainer}>
+            <TouchableHighlight onPress={() => navigation.navigate('events')}>
+              <Card style={styles.card}>
+                <Image
+                  style={styles.image}
+                  source={require('../assets/events.jpg')}
+                />
+                <Text style={styles.sectionTitle}>Events</Text>
+              </Card>
+            </TouchableHighlight>
+          </View>
         </View>
-        <View style={styles.cardContainer}>
-          <Card style={styles.card}>
-            <View style={{ flexDirection: 'row' }}>
-              <Image
-                style={styles.image}
-                source={require('../assets/events.jpg')}
-              />
-              <Text style={styles.sectionTitle}>6 Upcoming Events</Text>
-            </View>
-          </Card>
-        </View>
-        <View style={styles.cardContainer}>
-          <Card style={styles.card}>
-            <View style={{ flexDirection: 'row' }}>
-              <Image
-                source={require('../assets/Projects.jpg')}
-                style={styles.image}
-              />
-              <Text style={styles.sectionTitle}>12 Projects</Text>
-            </View>
-          </Card>
-        </View>
-        <View style={styles.cardContainer}>
-          <Card style={styles.card}>
-            <View style={{ flexDirection: 'row' }}>
-              <Image
-                source={require('../assets/employees.jpg')}
-                style={styles.image}
-              />
-              <Text style={styles.sectionTitle}>20 Employees</Text>
-            </View>
-          </Card>
+
+        <View style={styles.cardRow}>
+          <View style={styles.cardContainer}>
+            <TouchableHighlight onPress={() => navigation.navigate('projects')}>
+              <Card style={styles.card}>
+                <Image
+                  source={require('../assets/Projects.jpg')}
+                  style={styles.image}
+                />
+                <Text style={styles.sectionTitle}>Projects</Text>
+              </Card>
+            </TouchableHighlight>
+          </View>
+
+          <View style={styles.cardContainer}>
+            <TouchableHighlight
+              onPress={() => navigation.navigate('employees')}
+            >
+              <Card style={styles.card}>
+                <Image
+                  source={require('../assets/employees.jpg')}
+                  style={styles.image}
+                />
+                <Text style={styles.sectionTitle}>Employees</Text>
+              </Card>
+            </TouchableHighlight>
+          </View>
         </View>
       </ScrollView>
     </Screen>
@@ -72,31 +87,51 @@ function Dashboard({ navigation }) {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginVertical: 10,
-    paddingHorizontal: 20,
+    margin: 2,
+    marginTop: 6,
+    flex: 1,
+    borderRadius: 8,
+  },
+  dashTitle: {
+    // backgroundColor: 'blue',
+    flex: 1,
+    paddingVertical: 30,
+  },
+  cardRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   card: {
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    shadowOpacity: 0.26,
-    elevation: 8,
-    padding: 20,
-    borderRadius: 10,
-    backgroundColor: '#f18484',
+    paddingHorizontal: 15,
+    paddingVertical: 15,
+    borderRadius: 8,
+    backgroundColor: colors.light,
     justifyContent: 'center',
-    // alignItems: 'center',
-    marginBottom: 4,
-    borderLeftColor: 'green',
-    borderLeftWidth: 10,
+    alignItems: 'center',
+    flexDirection: 'column',
+    // width: '90%',
+    flex: 1,
   },
+
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 18,
+    textTransform: 'uppercase',
     fontWeight: '600',
-    color: 'white',
+    color: colors.black,
     marginLeft: 8,
+    marginTop: 8,
   },
-  image: { width: 50, height: 50, borderRadius: 15 },
+  title: {
+    fontSize: 24,
+    color: colors.white,
+    fontWeight: 'bold',
+    textTransform: 'capitalize',
+    textAlign: 'center',
+    marginBottom: 4,
+  },
+
+  image: { width: 70, height: 70, borderRadius: 15 },
 })
 
 export default Dashboard

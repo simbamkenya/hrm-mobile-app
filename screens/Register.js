@@ -18,7 +18,7 @@ function Register() {
           initialValues={{ name: '', email: '', password: '' }}
           onSubmit={(values) => dispatch(registerUser(values))}
         >
-          {({ values, handleChange, handleSubmit, handleBlur }) => (
+          {({ values, handleChange, handleSubmit }) => (
             <Form style={styles.form} onSubmit={handleSubmit}>
               <View style={styles.wrapper}>
                 {/* <Text style={styles.label}>Name</Text> */}
@@ -28,7 +28,6 @@ function Register() {
                   name="name"
                   type="text"
                   onChange={handleChange('name')}
-                  onBlur={handleBlur}
                   value={values.name}
                 />
               </View>
@@ -41,7 +40,6 @@ function Register() {
                   type="email"
                   field="email"
                   onChangeText={handleChange('email')}
-                  onBlur={handleBlur}
                   value={values.email}
                 />
               </View>
@@ -55,7 +53,6 @@ function Register() {
                   type="password"
                   field="password"
                   onChangeText={handleChange('password')}
-                  onBlur={handleBlur}
                   value={values.password}
                 />
               </View>

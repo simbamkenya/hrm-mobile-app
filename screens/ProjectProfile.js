@@ -8,17 +8,16 @@ function ProjectProfile({ route }) {
   return (
     <Screen style={styles.container}>
       <View>
-        <View>
-          <Image style={styles.image} source={require('../assets/user.jpg')} />
+        <View style={{ marginHorizontal: 'auto' }}>
+          <Image
+            style={styles.image}
+            source={require('../assets/project.jpg')}
+          />
         </View>
         <View style={styles.details}>
-          <Text style={styles.text}>Client: {projectName}</Text>
+          <Text style={styles.text}>Project: {projectName}</Text>
           <Text style={styles.text}>Hours: {hours}</Text>
           <Text style={styles.text}>Due date: {dateDue}</Text>
-        </View>
-        <View style={styles.details}>
-          <Text style={styles.text}>Projects</Text>
-          <Text style={styles.text}>projects one</Text>
         </View>
       </View>
     </Screen>
@@ -27,24 +26,25 @@ function ProjectProfile({ route }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.black,
     alignItems: 'center',
   },
   image: {
-    marginTop: 40,
+    marginTop: 60,
     marginBottom: 20,
     height: 100,
     width: 100,
     borderRadius: '50%',
   },
   details: {
-    marginTop: 20,
+    marginTop: 40,
     alignItems: 'start',
     lineHeight: 1.6,
     gap: 10,
   },
   text: {
     fontSize: 18,
+    fontWeight: 'bold',
     color: 'white',
   },
 })

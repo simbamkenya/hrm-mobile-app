@@ -6,8 +6,10 @@ import AppTextInput from '../components/AppTextInput'
 import { Formik, Form } from 'formik'
 import { login } from '../store/UserSlice'
 import { useNavigation } from '@react-navigation/native'
+import { useDispatch } from 'react-redux'
 
 function Login() {
+  const dispatch = useDispatch()
   const navigation = useNavigation()
 
   return (
@@ -20,11 +22,11 @@ function Login() {
         <Formik
           initialValues={{ email: '', password: '' }}
           onSubmit={(values) => {
-            dispatchEvent(login(values))
-            navigation.navigate('dashboard')
+            dispatch(login(values))
+            navigation.navigate('Home')
           }}
         >
-          {({ values, handleChange, handleSubmit, handleBlur }) => (
+          {({ values, handleChange, handleSubmit }) => (
             <Form onSubmit={handleSubmit}>
               <AppTextInput
                 placeholder="email"
@@ -33,7 +35,6 @@ function Login() {
                 field="email"
                 icon="email"
                 onChangeText={handleChange('email')}
-                onBlur={handleBlur}
                 value={values.email}
               />
               <AppTextInput
@@ -43,7 +44,6 @@ function Login() {
                 field="password"
                 icon="lock"
                 onChangeText={handleChange('password')}
-                onBlur={handleBlur}
                 value={values.password}
               />
               <AppButton

@@ -1,12 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import deviceStorage from '../deviceStorage'
 
 export const registerUser = createAsyncThunk(
   'users/registerUser',
   async (userData) => {
     console.log('register', userData)
     try {
-      await axios.post('http://localhost:3000/user/register', userData)
+      await axios
+        .post('http://localhost:3000/user/register', userData)
+        .then((res) => console.log(res))
     } catch (error) {
       console.log(error)
     }
@@ -14,7 +17,7 @@ export const registerUser = createAsyncThunk(
 )
 export const login = createAsyncThunk('users/login', async (userData) => {
   try {
-    await axios.post('http://localhost:3000/user/login', userData)
+    await axios.post('http://localhost:3000/user/login', userData).then()
   } catch (error) {
     console.log(error)
   }

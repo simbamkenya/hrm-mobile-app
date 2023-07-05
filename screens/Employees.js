@@ -11,18 +11,17 @@ import {
   Image,
   TouchableHighlight,
   Button,
+  ActivityIndicator,
 } from 'react-native'
 import { Swipeable } from 'react-native-gesture-handler'
 import ItemDeleteAction from './ItemDeleteAction'
 import { useNavigation } from '@react-navigation/native'
-// import EmployeeProfile from './EmployeeProfile'
-// import AppTabNavigator from './TabNavigator'
-// import EmployeeNavigator from '../navigation/EmployeeNavigator'
+import { colors } from '../constants/color'
 
 function Employees() {
   const navigation = useNavigation()
   const dispatch = useDispatch()
-  const { employees } = useSelector((state) => state.employees)
+  const { employees, loading } = useSelector((state) => state.employees)
   useEffect(() => {
     dispatch(fetchEmployees())
   }, [])
@@ -46,12 +45,6 @@ function Employees() {
             source={require('../assets/user.jpg')}
           ></Image>
           <Text style={styles.text}>{`${firstName + lastName}`}</Text>
-          {/* <Text style={styles.text}> {email}</Text> */}
-          {/* <Button
-            title="Delete"
-            style={{ padding: 15, fontSize: 16, borderRadius: 12 }}
-            onPress={() => dispatch(deleteEmployee(id))}
-          ></Button> */}
         </View>
       </TouchableHighlight>
     </Swipeable>
@@ -59,40 +52,53 @@ function Employees() {
 
   return (
     <Screen>
-      <FlatList
-        data={employees}
-        renderItem={({ item }) => (
-          <Employee
-            id={item._id}
-            firstName={item.firstName}
-            lastName={item.lastName}
-            email={item.email}
-            renderRightActions={() => (
-              <ItemDeleteAction
-                onPress={() => dispatch(deleteEmployee(item._id))}
-              />
-            )}
-          />
-        )}
-        keyExtractor={(item) => item._id}
-      />
+      <Button
+        title="Add Employee"
+        style={{ padding: 15, fontSize: 16, borderRadius: 12 }}
+        onPress={() => navigation.navigate('AddEmployee')}
+      ></Button>
+      {loading ? (
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <ActivityIndicator size="large" color="#00ff00" />
+        </View>
+      ) : (
+        <FlatList
+          data={employees}
+          renderItem={({ item }) => (
+            <Employee
+              id={item._id}
+              firstName={item.firstName}
+              lastName={item.lastName}
+              email={item.email}
+              renderRightActions={() => (
+                <ItemDeleteAction
+                  onPress={() => dispatch(deleteEmployee(item._id))}
+                />
+              )}
+            />
+          )}
+          keyExtractor={(item) => item._id}
+        />
+      )}
     </Screen>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'pink',
+    backgroundColor: colors.light,
     borderRadius: 10,
     padding: 15,
-    marginBottom: 6,
+    margin: 6,
     flexDirection: 'row',
-    alignItems: 'center',
   },
   text: {
     fontSize: 14,
+    marginTop: 4,
     fontWeight: 'bold',
+    color: 'white',
   },
 })
-
 export default Employees

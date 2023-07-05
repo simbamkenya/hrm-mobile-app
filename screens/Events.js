@@ -10,14 +10,17 @@ import {
   StyleSheet,
   Image,
   TouchableHighlight,
+  Button,
+  ActivityIndicator,
 } from 'react-native'
 import { Swipeable } from 'react-native-gesture-handler'
 import ItemDeleteAction from './ItemDeleteAction'
 import { useNavigation } from '@react-navigation/native'
+import { colors } from '../constants/color'
 
 function Events() {
   const navigation = useNavigation()
-  const { events } = useSelector((state) => state.events)
+  const { events, loading } = useSelector((state) => state.events)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -57,38 +60,50 @@ function Events() {
   )
   return (
     <Screen>
-      <FlatList
-        data={events}
-        // renderItem={({ item }) => <Text>{item.eventName}</Text>}
-        renderItem={({ item }) => (
-          <Event
-            eventName={item.eventName}
-            eventDate={item.eventDate}
-            duration={item.duration}
-            location={item.location}
-            renderRightActions={() => (
-              <ItemDeleteAction
-                onPress={() => dispatch(deleteEvent(item._id))}
-              />
-            )}
-          />
-        )}
+      <Button
+        title="Add Event"
+        onPress={() => navigation.navigate('AddEvent')}
       />
+      {loading ? (
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <ActivityIndicator size="large" color="#00ff00" />
+        </View>
+      ) : (
+        <FlatList
+          data={events}
+          // renderItem={({ item }) => <Text>{item.eventName}</Text>}
+          renderItem={({ item }) => (
+            <Event
+              eventName={item.eventName}
+              eventDate={item.eventDate}
+              duration={item.duration}
+              location={item.location}
+              renderRightActions={() => (
+                <ItemDeleteAction
+                  onPress={() => dispatch(deleteEvent(item._id))}
+                />
+              )}
+            />
+          )}
+        />
+      )}
     </Screen>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'pink',
+    backgroundColor: colors.light,
     borderRadius: 10,
     padding: 15,
-    marginBottom: 6,
+    margin: 6,
     flexDirection: 'row',
-    alignItems: 'center',
   },
   text: {
     fontSize: 14,
+    marginTop: 4,
     fontWeight: 'bold',
     color: 'white',
   },

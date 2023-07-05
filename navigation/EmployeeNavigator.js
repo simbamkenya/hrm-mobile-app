@@ -1,6 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import EmployeeProfile from '../screens/EmployeeProfile'
 import Employees from '../screens/Employees'
+
+import EmployeeForm from '../components/EmployeeForm'
+
 const Stack = createNativeStackNavigator()
 
 function EmployeeNavigator() {
@@ -11,6 +14,7 @@ function EmployeeNavigator() {
         name="EmployeeProfile"
         component={EmployeeProfile}
       ></Stack.Screen>
+      <Stack.Screen name="AddEmployee" component={EmployeeForm}></Stack.Screen>
     </Stack.Navigator>
   )
 }

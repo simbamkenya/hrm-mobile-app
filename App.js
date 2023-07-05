@@ -10,7 +10,7 @@ import Welcome from './screens/Welcome'
 import Register from './screens/Register'
 import Login from './screens/Login'
 import Dashboard from './screens/Dashboard'
-import AppTabNavigator from './screens/TabNavigator'
+import AppTabNavigator from './navigation/TabNavigator'
 
 import { useFonts } from 'expo-font'
 
@@ -26,7 +26,7 @@ const AppNavigator = ({ onLayout }) => (
     <Stack.Screen name="Login" component={Login}></Stack.Screen>
     <Stack.Screen name="Register" component={Register}></Stack.Screen>
     <Stack.Screen
-      // options={{ headerShown: false }}
+      options={{ headerShown: false }}
       name="Home"
       component={AppTabNavigator}
     ></Stack.Screen>

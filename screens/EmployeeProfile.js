@@ -9,7 +9,7 @@ function EmployeeProfile({ route }) {
   return (
     <Screen style={styles.container}>
       <View>
-        <View>
+        <View style={{ marginHorizontal: 'auto' }}>
           <Image style={styles.image} source={require('../assets/user.jpg')} />
         </View>
         <View style={styles.details}>
@@ -28,24 +28,25 @@ function EmployeeProfile({ route }) {
 }
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.black,
     alignItems: 'center',
   },
   image: {
-    marginTop: 40,
+    marginTop: 60,
     marginBottom: 20,
     height: 100,
     width: 100,
     borderRadius: '50%',
   },
   details: {
-    marginTop: 20,
+    marginTop: 40,
     alignItems: 'start',
     lineHeight: 1.6,
     gap: 10,
   },
   text: {
     fontSize: 18,
+    fontWeight: 'bold',
     color: 'white',
   },
 })

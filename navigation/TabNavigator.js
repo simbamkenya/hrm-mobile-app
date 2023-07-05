@@ -4,16 +4,16 @@ import { View, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { MaterialCommunityIcons } from 'react-native-vector-icons'
 
-import Clients from './Clients'
-import Projects from './Projects'
-import Events from './Events'
-import Employees from './Employees'
-import Dashboard from './Dashboard'
-import EmployeeProfile from './EmployeeProfile'
-import EmployeeNavigator from '../navigation/EmployeeNavigator'
-import ClientNavigator from '../navigation/ClientNavigator'
-import ProjectNavigator from '../navigation/ProjectNavigator'
-import EventNavigator from '../navigation/EventNavigator'
+import Clients from '../screens/Clients'
+import Projects from '../screens/Projects'
+import Events from '../screens/Events'
+import Employees from '../screens/Employees'
+import Dashboard from '../screens/Dashboard'
+import EmployeeProfile from '../screens/EmployeeProfile'
+import EmployeeNavigator from './EmployeeNavigator'
+import ClientNavigator from './ClientNavigator'
+import ProjectNavigator from './ProjectNavigator'
+import EventNavigator from './EventNavigator'
 
 const Tab = createBottomTabNavigator()
 
@@ -25,7 +25,7 @@ function AppTabNavigator() {
         tabBarActiveTintColor: '#3d4e7a',
         headerTitleAlign: 'center',
         headerShadowVisible: false,
-        // headerShown: false,
+        headerShown: false,
         tabBarStyle: {
           height: 60,
         },

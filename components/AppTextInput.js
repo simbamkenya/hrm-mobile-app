@@ -2,6 +2,7 @@ import React from 'react'
 import { TextInput, View, StyleSheet } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import _ from 'lodash'
+import { colors } from '../constants/color'
 
 function AppTextInput({ icon, width = '100%', field, ...otherProps }) {
   return (
@@ -10,8 +11,8 @@ function AppTextInput({ icon, width = '100%', field, ...otherProps }) {
         <MaterialCommunityIcons name={icon} size={20} color="" style="" />
       )}
       <TextInput
-        placeholderTextColor=""
-        style=""
+        placeholderTextColor="white"
+        style={{ width: '80%', padding: 6 }}
         {..._.omit(field, 'onChangeText')}
         {...otherProps}
       ></TextInput>
