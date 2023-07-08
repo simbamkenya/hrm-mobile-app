@@ -13,54 +13,48 @@ function Register() {
   const dispatch = useDispatch()
   return (
     <Screen>
-      <View>
+      <View style={styles.container}>
         <Formik
           initialValues={{ name: '', email: '', password: '' }}
           onSubmit={(values) => dispatch(registerUser(values))}
         >
           {({ values, handleChange, handleSubmit }) => (
             <Form style={styles.form} onSubmit={handleSubmit}>
-              <View style={styles.wrapper}>
-                {/* <Text style={styles.label}>Name</Text> */}
-                <AppTextInput
-                  style={styles.input}
-                  placeholder="name"
-                  name="name"
-                  type="text"
-                  onChange={handleChange('name')}
-                  value={values.name}
-                />
-              </View>
-              <View style={styles.wrapper}>
-                {/* <Text style={styles.label}>Email</Text> */}
-                <AppTextInput
-                  style={styles.input}
-                  placeholder="email"
-                  name="email"
-                  type="email"
-                  field="email"
-                  onChangeText={handleChange('email')}
-                  value={values.email}
-                />
-              </View>
+              <AppTextInput
+                style={styles.input}
+                placeholder="name"
+                name="name"
+                type="text"
+                onChange={handleChange('name')}
+                value={values.name}
+              />
 
-              <View style={styles.wrapper}>
-                {/* <Text style={styles.label}>Password</Text> */}
-                <AppTextInput
-                  style={styles.input}
-                  placeholder="password"
-                  name="password"
-                  type="password"
-                  field="password"
-                  onChangeText={handleChange('password')}
-                  value={values.password}
-                />
+              <AppTextInput
+                style={styles.input}
+                placeholder="Email"
+                name="email"
+                type="email"
+                field="email"
+                onChangeText={handleChange('email')}
+                value={values.email}
+              />
+
+              <AppTextInput
+                style={styles.input}
+                placeholder="Password"
+                name="password"
+                type="password"
+                field="password"
+                onChangeText={handleChange('password')}
+                value={values.password}
+              />
+              <View style={{ alignItems: 'center' }}>
+                <AppButton
+                  type="submit"
+                  title="SUBMIT"
+                  onPress={handleSubmit}
+                ></AppButton>
               </View>
-              <AppButton
-                type="submit"
-                title="SUBMIT"
-                onPress={handleSubmit}
-              ></AppButton>
             </Form>
           )}
         </Formik>
@@ -70,15 +64,16 @@ function Register() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    alignItems: 'center',
+    paddingTop: 100,
+  },
   form: {
-    flexDirection: 'column',
-  },
-  wrapper: {
-    // flexDirection: 'row',
-  },
-  label: {},
-  input: {
-    backgroundColor: 'gray',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
 

@@ -9,7 +9,7 @@ import { colors } from '../constants/color'
 function ClientForm() {
   return (
     <Screen>
-      <View style={styles.form}>
+      <View style={styles.container}>
         <Formik
           initialValues={{
             clientName: '',
@@ -53,14 +53,14 @@ function ClientForm() {
                 onBlur={handleBlur}
                 value={values.hourlyRate}
               />
-
-              <AppButton
-                style={styles.submit}
-                title="Submit"
-                color={colors.green}
-                type="Submit"
-                onPress={handleSubmit}
-              />
+              <View style={{ alignItems: 'center' }}>
+                <AppButton
+                  title="Submit"
+                  color={colors.green}
+                  type="Submit"
+                  onPress={handleSubmit}
+                />
+              </View>
             </Form>
           )}
         </Formik>
@@ -70,16 +70,10 @@ function ClientForm() {
 }
 
 const styles = StyleSheet.create({
-  form: {
-    marginHorizontal: 8,
-    paddingTop: 20,
-    justifyContent: 'center',
-  },
-  submit: {
-    // marginLeft: 50,
-    // justifyContent: 'center',
-    // alignItems: 'center',
+  container: {
+    padding: 15,
+    flex: 1,
+    paddingTop: 150,
   },
 })
-
 export default ClientForm

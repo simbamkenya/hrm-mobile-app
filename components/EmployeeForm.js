@@ -42,7 +42,9 @@ function EmployeeForm() {
               onBlur={handleBlur}
               value={values.email}
             />
-            <AppButton type="submit" title="Submit" onPress={handleSubmit} />
+            <View style={{ alignItems: 'center' }}>
+              <AppButton type="submit" title="Submit" onPress={handleSubmit} />
+            </View>
           </Form>
         )}
       </Formik>
@@ -50,6 +52,12 @@ function EmployeeForm() {
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    padding: 15,
+    flex: 1,
+    paddingTop: 150,
+  },
+})
 
 export default EmployeeForm
